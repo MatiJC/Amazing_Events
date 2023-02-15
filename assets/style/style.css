@@ -36,3 +36,12 @@ img {
     border: 1px solid black;
 }
 
+.horizontal-card {
+    height: 45vh;
+}
+
+.card-img-horizontal {
+    height: 40vh;
+    width: 40vh;
+}
+
