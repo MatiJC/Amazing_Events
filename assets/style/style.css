@@ -28,13 +28,11 @@ img {
     width: 100%;
     height: 15vw;
     object-fit: cover;
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
+    
 }
 
-/* .icon-background {
-    font-size: 4rem;
-} */
+.table-border {
+    border: 1px solid black;
+}
 
-/* .front-icon {
-    font-size: 1.8rem;
-} */
