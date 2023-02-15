@@ -1,0 +1,47 @@
+img {
+    width: 15rem;
+    height: 5rem;
+}
+
+.title {
+    font-size: 4rem;
+}
+
+.anchor-title {
+    text-decoration: none;
+    color: #212529;
+}
+
+.bg-gray {
+    background-color: rgb(218, 194, 194);
+}
+
+.h1 {
+    width: 100%;
+}
+
+.custom-container {
+    margin: 2rem;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+    padding: 1rem 1rem 0 1rem;
+    
+}
+
+.table-border {
+    border: 1px solid black;
+}
+
+.horizontal-card {
+    height: 45vh;
+}
+
+.card-img-horizontal {
+    height: 40vh;
+    width: 40vh;
+}
+
