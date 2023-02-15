@@ -1,0 +1,40 @@
+img {
+    width: 15rem;
+    height: 5rem;
+}
+
+.title {
+    font-size: 4rem;
+}
+
+.anchor-title {
+    text-decoration: none;
+    color: #212529;
+}
+
+.bg-gray {
+    background-color: rgb(218, 194, 194);
+}
+
+.h1 {
+    width: 100%;
+}
+
+.custom-container {
+    margin: 2rem;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+    padding: 1rem;
+}
+
+/* .icon-background {
+    font-size: 4rem;
+} */
+
+/* .front-icon {
+    font-size: 1.8rem;
+} */
