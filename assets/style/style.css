@@ -24,6 +24,10 @@ img {
     margin: 2rem;
 }
 
+.w-30 {
+    width: 30%;
+}
+
 .card-img-top {
     width: 100%;
     height: 15vw;
