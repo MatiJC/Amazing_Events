@@ -1,7 +1,7 @@
 const contenedorTarjetas = document.querySelector("#cardContainer");
 
-let currDate = new Date(currentDate).getTime();
-let generatedCards = createCard(events, currDate);
+let currDate = new Date(data.currentDate).getTime();
+let generatedCards = createCard(data.events, currDate);
 
 contenedorTarjetas.innerHTML = generatedCards;
 

@@ -1,6 +1,6 @@
 const contenedorTarjetas = document.querySelector("#cardContainer");
 
-let generatedCards = createCard(events);
+let generatedCards = createCard(data.events);
 
 contenedorTarjetas.innerHTML = generatedCards;
 

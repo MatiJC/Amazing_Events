@@ -1,5 +1,6 @@
-const currentDate = "2022-01-01";
-const events = [
+const data = {
+  "currentDate": "2022-01-01",
+  "events": [
     {
       _id: 1,
       "image":"https://amazingeventsapi.herokuapp.com/api/img/Feriadecomidas7.jpg",
@@ -168,6 +169,6 @@ const events = [
       "estimate":9000,
       "price":250
     }
-  ];
-
+  ]
+}
   
