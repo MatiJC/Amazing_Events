@@ -1,12 +1,22 @@
 const containerCards = document.querySelector("#cardContainer");
 const containerCategories = document.querySelector("#categoriesContainer");
+const buscador = document.querySelector("#buscador");
 
-let generatedCards = createCard(data.events);
+let eventsArray = createEventArray(data.events);
+let generatedCards = createCard(eventsArray);
 let categories = categoryFilter(data.events);
 let generatedCategories = createCategory(categories);
 
 containerCards.innerHTML = generatedCards;
 containerCategories.innerHTML = generatedCategories;
+
+function createEventArray(arreglo) {
+    eventArr = [];
+    for (const evento of arreglo) {
+        eventArr.push(evento);
+    }
+    return eventArr;
+}
 
 function createCard(arreglo) {
     let cards = "";
@@ -53,3 +63,9 @@ function createCategory(categoriesArray) {
 
 }
 
+
+
+// buscador.addEventListener('change', ()=>{
+//     let eventosFiltrados = eventsArray.filter(evento=>evento.name.toLowerCase().includes(buscador.value.toLowerCase()) || evento.description.toLowerCase().includes(buscador.value.toLowerCase()));
+
+// })
