@@ -1,18 +1,23 @@
-const containerCards = document.querySelector("#cardContainer");
-const containerCategories = document.querySelector("#categoriesContainer");
+const cardsContainer = document.querySelector("#cardContainer");
+const categoriesContainer = document.querySelector("#categoriesContainer");
 
-let currDate = new Date(data.currentDate).getTime();
-let generatedCards = createCard(data.events, currDate);
+let currDate = data.currentDate;
 let categories = categoryFilter(data.events);
-let generatedCategories = createCategory(categories);
+createCard(data.events, currDate);
+createCategory(categories);
 
-containerCards.innerHTML = generatedCards;
-containerCategories.innerHTML = generatedCategories;
+function printHTML(info, container) {
+    container.innerHTML = info;
+}
 
 function createCard(arreglo, fecha) {
     let cards = "";
-    for (const card of arreglo) {
-        let cardDate = new Date(card.date).getTime();
+    if (arreglo.length == 0) {
+        cards += `<h3>No se encontraron resultados</h3>`
+    }
+
+    arreglo.forEach(card => {
+        let cardDate = card.date;
         if (fecha > cardDate) {
             cards += `<div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="card mb-3 h-28">
@@ -28,8 +33,8 @@ function createCard(arreglo, fecha) {
                     </div>
                 </div>`
         }
-    }
-    return cards;
+    })
+    printHTML(cards, cardsContainer);
 }
 
 function categoryFilter(arrayData) {
@@ -44,15 +49,42 @@ function categoryFilter(arrayData) {
 }
 
 function createCategory(categoriesArray) {
-    let categoriesInner = "";
-    for(let category of categoriesArray) {
-        let index = categoriesArray.indexOf(category) + 1;
-        let optionText = "option" + index;
-        categoriesInner += `<div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="${category}" value="${optionText}">
+    let categories = "";
+    categoriesArray.forEach(category => {
+        categories += `<div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="${category}" value="${category}">
         <label class="form-check-label" for="${category}">${category}</label>
-    </div>`
-    }
-    return categoriesInner;
+    </div>`   
+    })
+    printHTML(categories, categoriesContainer);
+}
 
+const buscador = document.querySelector("#buscador");
+
+function filtrarArrayPorTexto(array, texto) {
+    return array.filter(evento => evento.name.toLowerCase().includes(texto.toLowerCase()) || evento.description.toLowerCase().includes(texto.toLowerCase()));
+}
+
+function filtrarPorCategoria(array) {
+    let checkboxes = document.querySelectorAll("input[type='checkbox']");
+    let chboxArray = Array.from(checkboxes);
+    let checkd = chboxArray.filter(check => check.checked);
+    if(checkd.length == 0){
+        return array;
+      }
+      let category = checkd.map(check => check.value);
+      let filtroArray = array.filter(e => category.includes(e.category));
+      return filtroArray; 
+}
+
+buscador.addEventListener("input", () =>  {
+    dobleFiltro();
+})
+
+categoriesContainer.addEventListener('change',dobleFiltro);
+
+function dobleFiltro(){
+    let textFiltered = filtrarArrayPorTexto(data.events, buscador.value);
+    let categoryFiltered = filtrarPorCategoria(textFiltered);
+    createCard(categoryFiltered, currDate);
 }
