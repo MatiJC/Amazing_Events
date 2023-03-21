@@ -11,8 +11,6 @@ function getData() {
         currentDate = dataAPI.currentDate;
         pastEvents = filterPastEvents(events, currentDate);
         upcomingEvents = filterUpEvents(events, currentDate);
-        // let percentage = checkPercentageAttendance(pastEvents);
-        // let maxCapacity = checkMaxCapacity(pastEvents);
         printStatTable(results(checkPercentageAttendance(pastEvents), checkPercentageAttendance(pastEvents).reverse(), checkMaxCapacity(pastEvents)), "statisticsTable");
 
         printTable(dataTable(upcomingEvents), "upTable");
