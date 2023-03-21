@@ -55,12 +55,12 @@ function checkMaxCapacity(array) {
 }
 
 function results(highestPercentage, lowestPercentage, largerCapacity) {
-    let all = {
+    let result = {
       highestPercentage: highestPercentage[0].nameEvent,
       lowestPercentage: lowestPercentage[0].nameEvent,
       largerCapacity: largerCapacity[0].nameEvent
     }
-    return all
+    return result;
   }
 
 function dataTable(array) {
