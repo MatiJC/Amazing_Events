@@ -1,10 +1,36 @@
 const cardsContainer = document.querySelector("#cardContainer");
 const categoriesContainer = document.querySelector("#categoriesContainer");
 
+let events = [];
+let categories = [];
+const buscador = document.querySelector("#buscador");
 
-let categories = categoryFilter(data.events);
-createCard(data.events);
-createCategory(categories);
+buscador.addEventListener("input", () =>  {
+    // let filteredArray = filtrarArrayPorTexto(events, buscador.value);
+    // createCard(filteredArray);
+    dobleFiltro();
+})
+
+categoriesContainer.addEventListener('change',dobleFiltro);
+document.querySelector(".btn").addEventListener('click', (e) => {
+    e.preventDefault();
+});
+
+function getData() {
+    // fetch('./assets/js/data.json')
+    fetch('https://mindhub-xj03.onrender.com/api/amazing')
+    .then(response => response.json())
+    .then(dataAPI => {
+        events = dataAPI.events;
+        categories = categoryFilter(dataAPI.events);
+        createCard(events);
+        createCategory(categories);
+    })
+    .catch(error => console.log(error.message));
+    
+}
+
+getData();
 
 
 function printHTML(info, container) {
@@ -57,8 +83,6 @@ function createCategory(categoriesArray) {
     printHTML(categories, categoriesContainer);
 }
 
-const buscador = document.querySelector("#buscador");
-
 function filtrarArrayPorTexto(array, texto) {
     return array.filter(evento => evento.name.toLowerCase().includes(texto.toLowerCase()) || evento.description.toLowerCase().includes(texto.toLowerCase()));
 }
@@ -69,23 +93,14 @@ function filtrarPorCategoria(array) {
     let checkd = chboxArray.filter(check => check.checked);
     if(checkd.length == 0){
         return array;
-      }
-      let category = checkd.map(check => check.value);
-      let filtroArray = array.filter(e => category.includes(e.category));
-      return filtroArray; 
+    }
+    let category = checkd.map(check => check.value);
+    let filtroArray = array.filter(e => category.includes(e.category));
+    return filtroArray; 
 }
 
-
-buscador.addEventListener("input", () =>  {
-    // let filteredArray = filtrarArrayPorTexto(data.events, buscador.value);
-    // createCard(filteredArray);
-    dobleFiltro();
-})
-
-categoriesContainer.addEventListener('change',dobleFiltro);
-
 function dobleFiltro(){
-    let textFiltered = filtrarArrayPorTexto(data.events, buscador.value);
+    let textFiltered = filtrarArrayPorTexto(events, buscador.value);
     let categoryFiltered = filtrarPorCategoria(textFiltered);
     createCard(categoryFiltered);
 }
